@@ -1,0 +1,18 @@
+<section id="tasks">
+    <header>
+        <h2>{{user.name}}'s Tasks</h2>
+        <menu>
+            <button (click)="toggleAddTask()">Add Task</button>
+        </menu>
+    </header>
+    @if (addTaskAction) {
+    <app-add-task [userId]="user.id" (closeAddTask)="toggleAddTask()" />
+    }
+    @else if (selectedUserTasks.length>0) {
+    @for(task of selectedUserTasks;track task.id){
+    <app-task [task]="task" />
+    }
+    }@else {
+    <p>No Tasks</p>
+    }
+</section>

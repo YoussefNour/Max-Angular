@@ -1,0 +1,18 @@
+<app-header />
+<main>
+  <ul id="users">
+    @for (user of users; track user.id) {
+    <li>
+      <app-card>
+        <app-user [user]="user" [selected]="user.id === selectedUserId" (select)="onSelectUser($event)" />
+      </app-card>
+    </li>
+    }
+  </ul>
+
+  @if(selectedUser){
+  <app-tasks [user]="selectedUser" />
+  }@else{
+  <p id="fallBack">select user to see their tasks</p>
+  }
+</main>

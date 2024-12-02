@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.gap-5x {
+  gap: 5px;
+}
+
+input.ng-invalid.ng-touched{
+  border: solid 1px red;
+}

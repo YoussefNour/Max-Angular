@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <!-- Add a Form with the following Inputs (and Validators)
+           1) Mail address (should not be empty and should be an email address)
+           2) A Dropdown which allows the user to select from three different Subscriptions ("Basic", "Advanced", "Pro")
+              Set "Advanced" as Default
+           3) A Password field (should not be empty)
+           4) A Submit Button
+
+           Display a warning message if the Form is invalid AND was touched. Display a warning message below each input if it's invalid.
+
+           Upon submitting the form, you should simply print the Value of the Form to the Console.
+           Optionally, display it in your template.
+      -->
+      <form #mainForm="ngForm" (ngSubmit)="submit()">
+        <div class="form-group flex flex-col gap-5x">
+          <div class="flex flex-col">
+            <label for="mail">Mail</label>
+            <input #email="ngModel" type="email" name="mail" id="mail-input" ngModel required email>
+            <p *ngIf="!email.valid && email.touched">please enter a valid email</p>
+          </div>
+          <div class="flex flex-col">
+            <label for="level">Level</label>
+            <select #level="ngModel" name="level" id="level-DropDown" [ngModel]="defaultLevel">
+              <option value="Basic">Basic</option>
+              <option value="Advanced">Advanced</option>
+              <option value="Pro">Pro</option>
+            </select>
+            <p *ngIf="!level.valid && level.touched">please pick a level</p>
+          </div>
+          <div class="flex flex-col">
+            <label for="password">password</label>
+            <input #pass="ngModel" type="password" name="password" id="password-input" required ngModel>
+            <p *ngIf="!pass.valid && pass.touched">please enter a valid password</p>
+          </div>
+          <input type="submit" value="Submit" [disabled]="!mainForm.valid">
+        </div>
+      </form>
+      <div *ngIf="mainForm.isSubmitted">
+        <p>#email.form.value</p>
+      </div>
+    </div>
+  </div>
+</div>
